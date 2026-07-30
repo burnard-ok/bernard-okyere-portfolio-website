@@ -1,4 +1,3 @@
-# portfolio-website
 # Bernard Okyere — Engineering Portfolio
 
 [![Website](https://img.shields.io/badge/Website-bernardokyere.com-0b5ed7)](https://bernardokyere.com/)
@@ -6,7 +5,7 @@
 
 A responsive personal portfolio for Bernard Okyere, an Electrical Engineer focused on computer networking, cloud systems, industrial electrical systems, maintenance, and automation.
 
-The website presents Bernard's professional profile, work experience, education, certifications, technical skills, downloadable résumé, research publication, and contact form.
+The website presents My professional profile, work experience, education, certifications, technical skills, downloadable résumé, research publication, and contact form.
 
 **Live website:** [bernardokyere.com](https://bernardokyere.com/)
 
@@ -20,7 +19,7 @@ The website presents Bernard's professional profile, work experience, education,
 - Visitor-system theme detection with optional light/dark theme control
 - Page zoom controls from 50% to 200%
 - Clean URLs such as `/resume`, `/projects`, and `/contact`
-- Downloadable PDF résumé and editable Microsoft Word résumé
+- Downloadable PDF résumé
 - Downloadable research publication
 - Contact form integrated with Google Forms
 - Google Analytics 4 integration loaded only after analytics consent
@@ -48,34 +47,7 @@ The website presents Bernard's professional profile, work experience, education,
 
 ## Architecture
 
-```mermaid
-flowchart TB
-    Visitor["Website visitor<br/>Desktop, tablet, or mobile"]
-
-    subgraph AWS["AWS"]
-        Route53["Amazon Route 53<br/>DNS"]
-        CloudFront["Amazon CloudFront<br/>HTTPS, CDN, and caching"]
-        CleanURLs["CloudFront Function<br/>Clean URL routing and redirects"]
-        Headers["Response Headers Policy<br/>Security headers"]
-        S3["Private Amazon S3 bucket<br/>Static website files"]
-
-        Route53 --> CloudFront
-        CloudFront --> CleanURLs
-        CleanURLs --> S3
-        Headers -. applied to responses .-> CloudFront
-    end
-
-    GoogleForms["Google Forms<br/>Contact submissions"]
-    GA4["Google Analytics 4<br/>Consent-gated analytics"]
-    ExternalAssets["Google Fonts and jsDelivr<br/>Fonts, Bootstrap, and icons"]
-
-    Visitor -->|HTTPS request| Route53
-    S3 -->|HTML, CSS, JS, images, and documents| CloudFront
-    CloudFront -->|Cached HTTPS response| Visitor
-    Visitor -->|Contact form POST| GoogleForms
-    Visitor -->|Only after consent| GA4
-    Visitor -->|Public front-end assets| ExternalAssets
-```
+![AWS architecture for the Bernard Okyere portfolio website](Screenshots/architecture.png)
 
 ### Request Flow
 
@@ -92,23 +64,19 @@ flowchart TB
 ```text
 .
 ├── assets/
-│   ├── screenshots/
-│   ├── Bernard_Okyere_Resume.pdf
+│   ├── Bernard-Okyere-Resume.pdf
 │   ├── litter-detection-publication.pdf
-│   ├── litter_sample.png
-│   ├── profile.jpg
+│   ├── litter-detection-output-sample.png
 │   ├── profile.png
 │   └── favicon.ico
 ├── css/
 │   └── styles.css
 ├── js/
 │   └── scripts.js
-├── cloudfront-clean-urls.js
 ├── contact.html
 ├── index.html
 ├── projects.html
 ├── resume.html
-└── README.md
 ```
 
 ## Pages
@@ -121,24 +89,6 @@ flowchart TB
 | `/contact` | `contact.html` | Contact form and professional contact information |
 
 The CloudFront Function also supports `/profile` as an alternative route to the home page and redirects legacy or trailing-slash URLs to their canonical forms.
-
-## Run Locally
-
-No build process or package installation is required.
-
-From the project directory, start a simple local web server:
-
-```powershell
-py -m http.server 8000
-```
-
-Then open:
-
-```text
-http://localhost:8000/index.html
-```
-
-When using this basic local server, visit `resume.html`, `projects.html`, and `contact.html` directly. The extension-free routes are implemented at the CloudFront edge and are therefore available in the deployed environment.
 
 ## AWS Deployment
 
@@ -153,20 +103,20 @@ When using this basic local server, visit `resume.html`, `projects.html`, and `c
 
 ### Deployment Steps
 
-1. Upload the project files to the S3 bucket while preserving the directory structure.
-2. Keep the S3 bucket private and allow access through CloudFront Origin Access Control.
+1. Uploaded the project files to the S3 bucket while preserving the directory structure.
+2. Kept the S3 bucket private and allowed access through CloudFront Origin Access Control.
 3. Set `index.html` as the CloudFront default root object.
-4. Publish `cloudfront-clean-urls.js` as a CloudFront Function.
-5. Associate the function with the distribution's **Viewer request** event.
-6. Attach the required CloudFront response headers policy.
-7. Point Route 53 alias records for the root domain to the CloudFront distribution.
-8. After uploading a release, create a CloudFront invalidation for:
+4. Published `cloudfront-clean-urls.js` as a CloudFront Function.
+5. Associated the function with the distribution's **Viewer request** event.
+6. Attached the required CloudFront response headers policy.
+7. Pointed Route 53 alias records for the root domain to the CloudFront distribution.
+8. After uploading a release, created a CloudFront invalidation for:
 
    ```text
    /*
    ```
 
-9. Verify the home, résumé, projects, contact, document-download, form-submission, consent, and dark-mode behaviour.
+9. Verified the home, résumé, projects, contact, document-download, form-submission, consent, and dark-mode behaviour.
 
 ### Clean URL Mapping
 
@@ -210,7 +160,7 @@ The contact page submits the following required fields to Google Forms:
 
 JavaScript captures the form data before clearing the fields, sends it to the Google Forms endpoint, and displays an inline confirmation without navigating away from the portfolio.
 
-If the Google Form is replaced or its questions are recreated, update both the form endpoint and the corresponding `entry.*` field names in `contact.html`.
+If the Google Form is replaced or its questions are recreated, both the form endpoint and the corresponding `entry.*` field names in `contact.html` must be updated.
 
 ## Analytics and Consent
 
