@@ -11,7 +11,7 @@ The website presents My professional profile, work experience, education, certif
 
 ## Screenshot
 
-![Bernard Okyere engineering portfolio home page](assets/screenshots/portfolio-homepage.png)
+![Bernard Okyere engineering portfolio home page](Screenshots/portfolio-homepage.png)
 
 ## Features
 
