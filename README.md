@@ -9,10 +9,13 @@ The website presents My professional profile, work experience, education, certif
 
 **Live website:** [bernardokyere.com](https://bernardokyere.com/)
 
-## Screenshot
+## Screenshots
+- Light Theme
+![Bernard Okyere engineering portfolio home page 1](Screenshots/portfolio-home-page-light-theme.png)
 
-![Bernard Okyere engineering portfolio home page](Screenshots/portfolio-homepage.png)
-
+- Dark Theme
+![Bernard Okyere engineering portfolio home page 2](Screenshots/portfolio-home-page-dark-theme.png)
+  
 ## Features
 
 - Responsive layout for desktop, tablet, and mobile screens
@@ -47,7 +50,7 @@ The website presents My professional profile, work experience, education, certif
 
 ## Architecture
 
-![AWS architecture for the Bernard Okyere portfolio website](Screenshots/architecture.png)
+![AWS architecture for the Bernard Okyere portfolio website](Screenshots/portfolio-architecture.png)
 
 ### Request Flow
 
