@@ -66,12 +66,11 @@ The website presents My professional profile, work experience, education, certif
 
 ```text
 .
-├── assets/
+├── media/
 │   ├── Bernard-Okyere-Resume.pdf
-│   ├── litter-detection-publication.pdf
-│   ├── litter-detection-output-sample.png
-│   ├── profile.png
-│   └── favicon.ico
+│   ├── bernard-okyere-github-profile.png
+│   ├── litter-detection-sample.png
+│   └── profile.png
 ├── css/
 │   └── styles.css
 ├── js/
