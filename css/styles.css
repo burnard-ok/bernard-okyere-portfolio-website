@@ -12109,6 +12109,39 @@ h3, .h3 {
   letter-spacing: 0.02em;
 }
 
+/* Shared logo and wordmark used across every page. */
+.site-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-width: 0;
+}
+
+.site-logo {
+  display: block;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: 0 0 2.75rem;
+  object-fit: contain;
+}
+
+@media (max-width: 575.98px) {
+  .site-brand {
+    gap: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .site-logo {
+    width: 2.35rem;
+    height: 2.35rem;
+    flex-basis: 2.35rem;
+  }
+
+  .site-brand .brand-context {
+    display: none;
+  }
+}
+
 .navbar-nav .nav-link,
 .btn {
   font-size: 0.9375rem;
